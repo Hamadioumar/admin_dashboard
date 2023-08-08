@@ -5,8 +5,24 @@ import '../../constants/style.dart';
 import '../../routing/routes.dart';
 import '../../widgets/custom.text.dart';
 
-class AuthenticationPage extends StatelessWidget {
-  const AuthenticationPage({Key? key}) : super(key: key);
+class AuthenticationPage extends StatefulWidget {
+  AuthenticationPage({Key? key}) : super(key: key);
+
+  @override
+  State<AuthenticationPage> createState() => _AuthenticationPageState();
+}
+
+class _AuthenticationPageState extends State<AuthenticationPage> {
+  final TextEditingController _textNameEditingController =
+      TextEditingController();
+
+  final TextEditingController _textPwdEditingController =
+      TextEditingController();
+
+  late String userName;
+
+  late String userPwd;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +65,14 @@ class AuthenticationPage extends StatelessWidget {
                   height: 15,
                 ),
                 TextField(
+                  controller: _textNameEditingController,
+                  onChanged: (value) {
+                    userName = value;
+
+                    // This callback will be triggered whenever the text in the TextField changes.
+                    // You can perform your input validation or manipulation here.
+                    // For example, you can restrict the input to only allow certain characters or format the input.
+                  },
                   decoration: InputDecoration(
                       labelText: "Email",
                       hintText: "abc@domain.com",
@@ -59,6 +83,14 @@ class AuthenticationPage extends StatelessWidget {
                   height: 15,
                 ),
                 TextField(
+                  controller: _textPwdEditingController,
+                  onChanged: (value) {
+                    userPwd = value;
+
+                    // This callback will be triggered whenever the text in the TextField changes.
+                    // You can perform your input validation or manipulation here.
+                    // For example, you can restrict the input to only allow certain characters or format the input.
+                  },
                   obscureText: true,
                   decoration: InputDecoration(
                       labelText: "Password",
@@ -95,9 +127,7 @@ class AuthenticationPage extends StatelessWidget {
                   height: 15,
                 ),
                 InkWell(
-                  onTap: () {
-                    Get.offAllNamed(rootRoute);
-                  },
+                  onTap: handleSubmit,
                   child: Container(
                     decoration: BoxDecoration(
                         color: Colors.blueAccent,
@@ -129,5 +159,52 @@ class AuthenticationPage extends StatelessWidget {
         ),
       ],
     ));
+  }
+
+  void handleSubmit() {
+    String inputNameText = _textNameEditingController.text;
+    String inputPwdText = _textPwdEditingController.text;
+    if (inputNameText.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Error'),
+            content: const Text('Please enter an user name.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    } else if (inputPwdText.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text('Error'),
+            content: const Text('Please enter a password.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('OK'),
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      // Perform the desired action with the input text
+      // For example, submit it to a backend server.
+      Get.offAllNamed(rootRoute);
+      print('Submitted text: $inputNameText');
+    }
   }
 }
