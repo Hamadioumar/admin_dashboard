@@ -12,7 +12,7 @@ class AuthenticationPage extends StatelessWidget {
     return Scaffold(
         body: Stack(
       children: [
-        Image.asset("assets/image.jpg",
+        Image.asset("assets/background.jpg",
             height: double.infinity, width: double.infinity, fit: BoxFit.cover),
         Center(
           child: Container(
@@ -100,7 +100,8 @@ class AuthenticationPage extends StatelessWidget {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                        color: active, borderRadius: BorderRadius.circular(20)),
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(20)),
                     alignment: Alignment.center,
                     width: double.maxFinite,
                     padding: const EdgeInsets.symmetric(vertical: 16),
