@@ -1,12 +1,12 @@
+import 'package:admin_dashboard/constants/controllers.dart';
+import 'package:admin_dashboard/helpers/responsiveness.dart';
+import 'package:admin_dashboard/pages/drivers/widgets/drivers_table.dart';
+import 'package:admin_dashboard/widgets/custom.text.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_web_dashboard/constants/controllers.dart';
-import 'package:flutter_web_dashboard/helpers/reponsiveness.dart';
-import 'package:flutter_web_dashboard/pages/drivers/widgets/drivers_table.dart';
-import 'package:flutter_web_dashboard/widgets/custom_text.dart';
 import 'package:get/get.dart';
 
 class DriversPage extends StatelessWidget {
-  const DriversPage({Key key}) : super(key: key);
+  const DriversPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
